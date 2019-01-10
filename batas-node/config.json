@@ -1,0 +1,42 @@
+{
+"//": "TG Bot Settings",
+"bot": {
+    "BatteryAutoShopBot":{
+        "telegram_token":"435082546:AAG7MPr4zjYH0Ck6RgKJb78BjNmEPvWOGTQ",
+        "telegram_url":"https://batas-finkvi.c9users.io/",
+        "port":8080
+    }
+},
+"//": "Database settings",
+"db": {
+    "//": "Use CouchDB from IBM in DataCloud",
+    "url": "c97d864b-b043-4038-99e8-eef6e1f5d32e-bluemix.cloudant.com",
+    
+    "//": "Database with public data. Points with product types",
+    "batas_public": {
+        "rkey": "theightsedestarlynitsmat:817fceb411f6ab99763e021da8bca0e88b826814",
+        "wkey":"amproursterroduchimencyc:2b2142aea97e8fc1f02a76cfbe6d3ea3f7a7ddc1"
+    },
+    
+    "//": "Database with private data. Point with fotos and comments + orders",
+    "batas_private": {
+        "rkey": "rthressightersedsterisom:f570100927af9ec9cf947cf06654dcac402dbaaf",
+        "wkey": "heemengranedgenciectiver:be5ab52954ce4f421365fe113d054ae6ef7ea371"
+    }
+},
+"//": "Token for API Using",
+"APItoken": {
+    "hash": "d1ccb016086fad4305bb80e7b1f688948e0465d7cad83439cc3377e4d64a09031d55b47a4f8585a4c03be1b0d61e6f4e3730baeb4ac64fcd3c95715371c0a2$"
+},
+
+"//": "YKassa",
+"YKassa": {
+    "shopId": "500923",
+    "key": "test_9skUDednHcWKk4CRToQ7h6rSZrCHv98LOEADgole5Fs"
+},
+
+"//": "Main Shop url",
+"shopurl": "http://127.0.0.1:5500/"
+}
+
+

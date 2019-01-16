@@ -16,6 +16,7 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   { path: 'map', loadChildren: './map/map.module#MapPageModule' }
+
 ];
 
 @NgModule({

@@ -9,23 +9,25 @@ import {
   MarkerCluster,
   Environment
 } from '@ionic-native/google-maps/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { Component, OnInit, Inject } from '@angular/core';
 import { PubService } from "../_services/pub.service"
-
+//import { ModalpagePage } from "../modalpage/modalpage.page"
 
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
+  //entryComponents:[ ModalpagePage ]
 })
 export class MapPage implements OnInit {
   map: GoogleMap;
   private _pubMapMarkers: any;
   private _markersOptions: any = [];
-
+  
   constructor(
+    public modalController: ModalController,
     private platform:Platform,
     @Inject(PubService) private pub: PubService
     ){}
@@ -42,6 +44,14 @@ export class MapPage implements OnInit {
     })
     
   }
+
+  // async presentModal() {
+  //   const modal = await this.modalController.create({
+  //     component: ModalpagePage,
+  //     componentProps: { value: 123 }
+  //   });
+  //   return await modal.present();
+  // }
 
   loadMap() {
     // This code is necessary for browser
@@ -110,4 +120,5 @@ export class MapPage implements OnInit {
   
   }
 
+  
 }

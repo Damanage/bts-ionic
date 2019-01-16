@@ -9,11 +9,11 @@ import {
   MarkerCluster,
   Environment
 } from '@ionic-native/google-maps/ngx';
-import { Platform, ModalController } from '@ionic/angular';
-import { Component, OnInit, Inject } from '@angular/core';
-import { PubService } from "../_services/pub.service"
-//import { ModalpagePage } from "../modalpage/modalpage.page"
-
+import { Platform, ModalController, NavController, PopoverController } from '@ionic/angular';
+import { Component, OnInit, Inject} from '@angular/core';
+import { PubService } from "../_services/pub.service";
+import { ModalpagePage } from "../modalpage/modalpage.page";
+import { HtmlInfoWindow } from '@ionic-native/google-maps';
 
 @Component({
   selector: 'app-map',
@@ -27,7 +27,9 @@ export class MapPage implements OnInit {
   private _markersOptions: any = [];
   
   constructor(
+    private nav: NavController,
     public modalController: ModalController,
+    public popoverCtrl: PopoverController,
     private platform:Platform,
     @Inject(PubService) private pub: PubService
     ){}
@@ -52,15 +54,39 @@ export class MapPage implements OnInit {
   //   });
   //   return await modal.present();
   // }
-
+  async openModal(ev:Event, props){
+    
+    const popover = await this.modalController.create({
+      component: ModalpagePage,
+      componentProps: { 
+        value: props
+      },
+      //event: ev
+    });
+    popover.present();
+  }
   loadMap() {
     // This code is necessary for browser
     Environment.setEnv({
       'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyDdSDwzRvF4wNgX6qN2KA3DOqbielw5kyM',
       'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyDdSDwzRvF4wNgX6qN2KA3DOqbielw5kyM'
     });
-    let _markerInstance;
     
+    // let htmlInfoWindow = new HtmlInfoWindow();
+    // let frame: HTMLElement = document.createElement('div');
+    // frame.innerHTML = [
+    //    `<h3>You rockin dude!</h3>`,
+    //    `<button>I'm a button, bitch!</button>`
+    // ].join("")
+    // frame.getElementsByTagName("button")[0].addEventListener("click", ($event)=>{
+    //   this.openModal($event);
+    // })
+    // htmlInfoWindow.setContent(frame, {
+    //   width: "200px",
+    //   height: "200px"
+    // });
+
+
     let mapOptions: GoogleMapOptions = {
       camera: {
          target: {
@@ -77,7 +103,7 @@ export class MapPage implements OnInit {
       let coords = element.value.geometry.coordinates;
       let desc = element.value.properties
       this._markersOptions.push({
-        title: `<h3>${desc.product}</h3>`,
+        title: desc.product,
         icon: {
           url: './assets/icon/batt.png',
           size: {
@@ -89,6 +115,13 @@ export class MapPage implements OnInit {
         position: {
           lat: coords[0],
           lng: coords[1]
+        },
+        prop: {
+          title: desc.product,
+          price: desc.price,
+          comment: desc.comments,
+          date: desc.fromdate,
+          currency: desc.currency
         }
       })
     });
@@ -110,12 +143,32 @@ export class MapPage implements OnInit {
       }
     ]
     })
+    
+    
+
+
     markerCluster.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params)=>{
-       let marker: Marker = params[1];
-       marker.setTitle(marker.get("name"));;
-       marker.setSnippet(marker.get("address"));
-       marker.showInfoWindow();
-     })
+      let marker: Marker = params[1];
+      
+      let name = marker.getTitle();
+      let htmlInfoWindow = new HtmlInfoWindow();
+      let frame: HTMLElement = document.createElement('div');
+      frame.innerHTML = [
+        `<h3>Тип батарейки - ${name}</h3>`,
+        `<ion-button  shape="round" color="secondary" fill="outline">Детальная информация</ion-button>`
+      ].join("")
+      frame.className += "info-wrapper";
+      frame.getElementsByTagName("ion-button")[0].addEventListener("click", ($event)=>{
+        this.openModal($event, marker);
+      })
+      htmlInfoWindow.setContent(frame, {
+        width: "280px",
+        height: "110px"
+      });
+      
+
+      htmlInfoWindow.open(marker);
+    })
     
   
   }

@@ -1,5 +1,35 @@
 
 
 <ion-content padding>
-  <div class="d">DICK</div>
+    <ion-button size="large"  expand="block" fill="clear" color="dark" (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+    </ion-button>
+    <ion-card>
+      <ion-img src="/assets/battery-truck.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>Товар</ion-card-subtitle>
+        <ion-card-title>{{desc.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          {{desc.comment}}
+        </ion-item>  
+        <ion-item>
+          Товар - {{desc.title}} цена - {{desc.price}} {{desc.currency}}
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Дата публикации: {{desc.date}}
+          </ion-label>
+        </ion-item>
+        <ion-button size="large"  expand="block" fill="outline" color="secondary" >
+            Купить <ion-icon name="card"></ion-icon>
+        </ion-button>  
+      </ion-card-content>
+    </ion-card>
+  
+  <!-- price: {{desc.price}}
+  comment: {{desc.comment}}
+  date: {{desc.date}}
+  currency: {{desc.currency}} -->
 </ion-content>

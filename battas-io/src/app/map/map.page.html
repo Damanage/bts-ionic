@@ -15,12 +15,9 @@
     <ion-fab-button>
       <ion-menu-button></ion-menu-button>
     </ion-fab-button>
-    <ion-fab-button>
+    <ion-fab-button [routerLink]="'/home'">
       <ion-icon name="home"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button>
-        <ion-icon (click)="presentModal()" name="alarm"></ion-icon>
-      </ion-fab-button>
   </ion-fab-list>
 </ion-fab>
 <ion-content >

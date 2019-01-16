@@ -1,3 +1,13 @@
 #map_canvas {
     height: 100%;
 }
+:host::ng-deep .info-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+:host::ng-deep .pgm-html-info-content-box{
+    padding: 0 !important;
+}

@@ -12,17 +12,17 @@ import { HomePage } from './home/home.page';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Home',
+      title: 'Главная',
       url: '/home',
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Каталог',
       url: '/list',
       icon: 'list'
     },
     {
-      title: 'Map',
+      title: 'Карта',
       url: '/map',
       icon: 'map'
     }

@@ -1,11 +1,11 @@
 
 
 <ion-content padding>
-    <ion-button size="large"  expand="block" fill="clear" color="dark" (click)="closeModal()">
+    <ion-button  size="large"  expand="block" fill="clear" color="dark" (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
     </ion-button>
     <ion-card>
-      <ion-img src="/assets/battery-truck.jpg"></ion-img>
+      <ion-img src="/assets/img-placeholder-small.svg"></ion-img>
       <ion-card-header>
         <ion-card-subtitle>Товар</ion-card-subtitle>
         <ion-card-title>{{desc.title}}</ion-card-title>
@@ -22,7 +22,7 @@
             Дата публикации: {{desc.date}}
           </ion-label>
         </ion-item>
-        <ion-button size="large"  expand="block" fill="outline" color="secondary" >
+        <ion-button (click)="buyItem(desc.id)" size="large"  expand="block" fill="outline" color="secondary" >
             Купить <ion-icon name="card"></ion-icon>
         </ion-button>  
       </ion-card-content>

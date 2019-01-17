@@ -59,7 +59,8 @@ export class MapPage implements OnInit {
     const popover = await this.modalController.create({
       component: ModalpagePage,
       componentProps: { 
-        value: props
+        value: props,
+        flag: "mapPage"
       },
       //event: ev
     });
@@ -101,7 +102,8 @@ export class MapPage implements OnInit {
     this.map = GoogleMaps.create('map_canvas', mapOptions);
     let markersList = this._pubMapMarkers.rows.forEach(element => {
       let coords = element.value.geometry.coordinates;
-      let desc = element.value.properties
+      let desc = element.value.properties;
+      let id = element.id
       this._markersOptions.push({
         title: desc.product,
         icon: {
@@ -117,6 +119,7 @@ export class MapPage implements OnInit {
           lng: coords[1]
         },
         prop: {
+          id: id,
           title: desc.product,
           price: desc.price,
           comment: desc.comments,

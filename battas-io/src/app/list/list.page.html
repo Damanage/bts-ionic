@@ -4,18 +4,24 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      Каталог
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
+    <ion-item>
+      <ion-label slot="start">
+        Позиции:
+      </ion-label>
+      <ion-button slot="end" [routerLink]="'/map'" fill="outline" color="primary">Позиции на карте <ion-icon name="md-arrow-forward" slot="end"></ion-icon></ion-button>
+    </ion-item>
+    <ion-item *ngFor="let item of pubItems" (click)="openModal(item)">
+      <ion-icon name="battery-full" slot="start"></ion-icon>
+        Стандарт: {{item.product}}
       <div class="item-note" slot="end">
-        {{item.note}}
+        {{item.price}} {{item.currency}}
       </div>
     </ion-item>
   </ion-list>
